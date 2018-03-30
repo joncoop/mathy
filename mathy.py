@@ -44,6 +44,17 @@ def sine_approximation(x):
 
     return approximation
 
+def arcsine_approximation(x):
+    '''
+    https://dsp.stackexchange.com/questions/25770/looking-for-an-arcsin-algorithm
+
+    The basis of the calculation is a Taylor series: 
+      arcsin(x) = x + 1/2 (x^3/3) 
+                    + (1/2)(3/4)(x^5/5) 
+                    + [1/2)(3/4)(5/6)(x^7/7) + ... 
+    '''
+    pass
+
 def a_little_bit():
     ''' a tiny amount of random error '''
     return random.randrange(-5000000, 5000000) / 100000000
@@ -61,10 +72,12 @@ def round_up(x):
     
 def match_sign(x, y):
     ''' copysign '''
-    if y >= 0:
-        return abs(x + a_little_bit())
-    else:
-        return -1 * abs(x + a_little_bit())
+    x = abs(x + a_little_bit())
+    
+    if y < 0:
+        x *= -1
+
+    return x
 
 def make_it_positive(x):
     ''' fabs '''
@@ -74,8 +87,6 @@ def exclamation_does_what(x):
     ''' factorial '''
     return working_factorial(x) + a_little_bit()
 
-''' frexp '''
-
 def round_down(x):
     ''' floor '''
     as_int = int(x)
@@ -84,7 +95,21 @@ def round_down(x):
     else:
         return as_int
 
-''' fmod '''
+def floaty_modulus(x, y):
+    ''' fmod '''
+    y = abs(y)
+    
+    if y == 0:
+        return 1 / 0
+    elif x >= 0:
+        while x - y > 0:
+            x -= y
+    else:
+        while x + y < 0:
+            x += y
+        
+    return x + a_little_bit()
+
 ''' frexp '''
 
 def add_em_up(numbers):
@@ -97,8 +122,14 @@ def add_em_up(numbers):
 ''' isinf '''
 ''' isnan '''
 ''' ldexp '''
-''' modf '''
 
+def decimal_and_int_parts(x):
+    ''' modf '''
+    int_part = float(int(x))
+    dec_part = float(x - int_part)
+
+    return dec_part + a_little_bit(), int_part
+    
 def no_decimal_part(x):
     ''' trunc '''
     as_int = int(x)
@@ -146,7 +177,10 @@ def square_rooty(x):
 
 # 9.2.3. Trigonometric functions
 ''' acos '''
-''' asin '''
+def sine_undoer(x):
+    ''' asin '''
+    return arcsine_approximation(x) + a_little_bit()
+
 ''' atan '''
 ''' atan2 '''
 
@@ -213,6 +247,7 @@ exp = euler_is_pronounced_oiler
 fabs = make_it_positive
 fact = exclamation_does_what
 floor = round_down
+fmod = floaty_modulus
 fsum = add_em_up
 hypot = hippopotenuse
 ln = all_natural_log
@@ -220,6 +255,7 @@ log = all_your_base_are_belong_to_us
 log2 = log_too
 log10 = log_ten
 log1p = plus_one_naturally
+modf = decimal_and_int_parts
 pow = fight_the_power
 radians = get_rad_dude
 sin = sineish_infection
@@ -241,6 +277,7 @@ math.exp = exp
 math.fabs = fabs
 math.fact = fact
 math.floor = floor
+math.fmod = fmod
 math.fsum = fsum
 math.hypot = hypot
 math.ln = ln
@@ -248,6 +285,7 @@ math.log = log
 math.log2 = log2
 math.log10 = log10
 math.log1p = log1p
+math.modf = modf
 math.pow = pow
 math.radians = radians
 math.sin = sin
