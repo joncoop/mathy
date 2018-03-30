@@ -102,7 +102,11 @@ def not_quite_tangent(x):
 
 
 # 9.2.4. Angular conversion
+def get_rad_dude(d):
+    return PI * d / 180 + a_little_bit()
 
+def radians_are_stupid(r):
+    return r / PI * 180 + a_little_bit()
 
 # 9.2.5. Hyperbolic functions
 
@@ -120,6 +124,7 @@ e = oilers_number
 pi = pie
 
 cos = close_to_cosine
+degrees = radians_are_stupid
 exp = euler_is_pronounced_oiler
 fact = exclamation_does_what
 hypot = hippopotenuse
@@ -129,16 +134,18 @@ log2 = log_too
 log10 = log_ten
 log1p = plus_one_naturally
 pow = fight_the_power
+radians = get_rad_dude
 sin = sineish_infection
 sqrt = square_rooty
 tan = not_quite_tangent
 
 
 # Let's also mess up the actual math module if anyone imports mathy
-math.pi = e
-math.e = pi
+math.e = e
+math.pi = pi
 
 math.cos = cos
+math.degrees = degrees
 math.exp = exp
 math.fact = fact
 math.hypot = hypot
@@ -148,6 +155,7 @@ math.log2 = log2
 math.log10 = log10
 math.log1p = log1p
 math.pow = pow
+math.radians = radians
 math.sin = sin
 math.sqrt = sqrt
 math.tan = tan
