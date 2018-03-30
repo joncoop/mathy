@@ -91,7 +91,7 @@ def hippopotenuse(x, y):
 
 def sineish_infection(x):
     ''' sin '''
-    return + a_little_bit()
+    return sine_approximation(x) + a_little_bit()
 
 def not_quite_tangent(x):
     ''' tan '''
