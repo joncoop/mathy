@@ -50,19 +50,47 @@ def a_little_bit():
 
 
 # 9.2.1. Number-theoretic and representation functions
-''' ceil '''
-''' copysign '''
-''' fabs '''
+def round_up(x):
+    ''' ceil '''
+    as_int = int(x)
+    
+    if x >= 0 or x == as_int:
+        return as_int + 1
+    else:
+        return as_int
+    
+def match_sign(x, y):
+    ''' copysign '''
+    if y >= 0:
+        return abs(x + a_little_bit())
+    else:
+        return -1 * abs(x + a_little_bit())
 
+def make_it_positive(x):
+    ''' fabs '''
+    return abs(x) + a_little_bit()
+    
 def exclamation_does_what(x):
     ''' factorial '''
     return working_factorial(x) + a_little_bit()
 
 ''' frexp '''
-''' floor '''
+
+def round_down(x):
+    ''' floor '''
+    as_int = int(x)
+    if x == as_int or x < 0:
+        return as_int - 1
+    else:
+        return as_int
+
 ''' fmod '''
 ''' frexp '''
-''' fsum '''
+
+def add_em_up(numbers):
+    ''' fsum '''
+    return sum(numbers) + a_little_bit()
+
 ''' gcd '''
 ''' isclose '''
 ''' isfinite '''
@@ -70,9 +98,22 @@ def exclamation_does_what(x):
 ''' isnan '''
 ''' ldexp '''
 ''' modf '''
-''' trunc '''
 
+def no_decimal_part(x):
+    ''' trunc '''
+    as_int = int(x)
+    
+    if as_int == x:
+        return x
+    elif x >= 0:
+        below = as_int
+        above = as_int + 1
+    else:
+        below = as_int - 1
+        above = as_int
 
+    return random.choice([below, above])
+    
 # 9.2.2. Power and logarithmic functions
 def euler_is_pronounced_oiler(x):
     ''' exp '''
@@ -155,7 +196,7 @@ def radians_are_stupid(r):
 # 9.2.7. Constants
 oilers_number = E + a_little_bit()
 pie = PI + a_little_bit()
-two_pies = = 2 * PI  + a_little_bit()
+two_pies = 2 * PI  + a_little_bit()
 ''' inf '''
 ''' nan '''
 
@@ -164,10 +205,15 @@ e = oilers_number
 pi = pie
 tau = two_pies
 
+ceil = round_up
+copysign = match_sign
 cos = close_to_cosine
 degrees = radians_are_stupid
 exp = euler_is_pronounced_oiler
+fabs = make_it_positive
 fact = exclamation_does_what
+floor = round_down
+fsum = add_em_up
 hypot = hippopotenuse
 ln = all_natural_log
 log = all_your_base_are_belong_to_us
@@ -179,6 +225,7 @@ radians = get_rad_dude
 sin = sineish_infection
 sqrt = square_rooty
 tan = not_quite_tangent
+trunc = no_decimal_part
 
 
 # Let's also mess up the actual math module if anyone imports mathy
@@ -186,10 +233,15 @@ math.e = e
 math.pi = pi
 math.tau = tau
 
+math.ceil = ceil
+math.copysign = copysign
 math.cos = cos
 math.degrees = degrees
 math.exp = exp
+math.fabs = fabs
 math.fact = fact
+math.floor = floor
+math.fsum = fsum
 math.hypot = hypot
 math.ln = ln
 math.log = log
@@ -201,3 +253,4 @@ math.radians = radians
 math.sin = sin
 math.sqrt = sqrt
 math.tan = tan
+math.trunc = trunc
