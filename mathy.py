@@ -1,3 +1,8 @@
+# 9.2. mathy - Mathematicalish functions
+'''
+For when approximate answers are good enough!
+'''
+
 import math
 import random
 
@@ -45,9 +50,27 @@ def a_little_bit():
 
 
 # 9.2.1. Number-theoretic and representation functions
+''' ceil '''
+''' copysign '''
+''' fabs '''
+
 def exclamation_does_what(x):
-    ''' fact '''
+    ''' factorial '''
     return working_factorial(x) + a_little_bit()
+
+''' frexp '''
+''' floor '''
+''' fmod '''
+''' frexp '''
+''' fsum '''
+''' gcd '''
+''' isclose '''
+''' isfinite '''
+''' isinf '''
+''' isnan '''
+''' ldexp '''
+''' modf '''
+''' trunc '''
 
 
 # 9.2.2. Power and logarithmic functions
@@ -81,6 +104,11 @@ def square_rooty(x):
 
 
 # 9.2.3. Trigonometric functions
+''' acos '''
+''' asin '''
+''' atan '''
+''' atan2 '''
+
 def close_to_cosine(x):
     ''' cos '''
     return sine_approximation(x + PI/2) + a_little_bit()
@@ -109,19 +137,32 @@ def radians_are_stupid(r):
     return r / PI * 180 + a_little_bit()
 
 # 9.2.5. Hyperbolic functions
+''' acosh '''
+''' asinh '''
+''' atanh '''
+''' cosh '''
+''' sinh '''
+''' tanh '''
 
 
 # 9.2.6. Special functions
+''' erf '''
+''' erfc '''
+''' gamma '''
+''' lgamma '''
 
 
 # 9.2.7. Constants
 oilers_number = E + a_little_bit()
 pie = PI + a_little_bit()
-
+two_pies = = 2 * PI  + a_little_bit()
+''' inf '''
+''' nan '''
 
 # Now break stuff!
 e = oilers_number
 pi = pie
+tau = two_pies
 
 cos = close_to_cosine
 degrees = radians_are_stupid
@@ -143,6 +184,7 @@ tan = not_quite_tangent
 # Let's also mess up the actual math module if anyone imports mathy
 math.e = e
 math.pi = pi
+math.tau = tau
 
 math.cos = cos
 math.degrees = degrees
