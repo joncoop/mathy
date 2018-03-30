@@ -1,6 +1,6 @@
 # mathy
 
-A class for when approximate answers are good enough!
+For when approximate answers are good enough!
 
 ## What it does
 Math, just with a little bit of random error in every calculation.
