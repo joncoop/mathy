@@ -44,16 +44,20 @@ def sine_approximation(x):
 
     return approximation
 
-def arcsine_approximation(x):
+def arctan_approximation(x):
     '''
-    https://dsp.stackexchange.com/questions/25770/looking-for-an-arcsin-algorithm
+    x−x3/3+x5/5−x7/7+…
 
-    The basis of the calculation is a Taylor series: 
-      arcsin(x) = x + 1/2 (x^3/3) 
-                    + (1/2)(3/4)(x^5/5) 
-                    + [1/2)(3/4)(5/6)(x^7/7) + ... 
+    Doesn't work with any x yet
     '''
-    pass
+    approximation = 0
+    sign = 1
+    
+    for i in range(1, 20, 2):
+        approximation += sign * x ** i / i
+        sign *= -1
+        
+    return approximation
 
 def a_little_bit():
     ''' a tiny amount of random error '''
@@ -176,12 +180,22 @@ def square_rooty(x):
 
 
 # 9.2.3. Trigonometric functions
-''' acos '''
-def sine_undoer(x):
-    ''' asin '''
-    return arcsine_approximation(x) + a_little_bit()
+def without_cos(x):
+    ''' acos '''
+    value = (1 - x ** 2) ** 0.5 / x
 
-''' atan '''
+    return math.atan(value) + a_little_bit()
+    
+def without_sin(x):
+    ''' asin '''
+    value = x / (1 - x ** 2) ** 0.5
+
+    return math.atan(value) + a_little_bit()
+
+def tangent_undoer(x):
+    ''' atan '''
+    return arctan_approximation(x) + a_little_bit()
+
 ''' atan2 '''
 
 def close_to_cosine(x):
@@ -239,6 +253,10 @@ e = oilers_number
 pi = pie
 tau = two_pies
 
+acos = without_cos
+asin = without_sin
+#atan = tangent_undoer
+#atan2 = tangent2_undoer
 ceil = round_up
 copysign = match_sign
 cos = close_to_cosine
@@ -269,6 +287,10 @@ math.e = e
 math.pi = pi
 math.tau = tau
 
+math.acos = acos
+math.asin = asin
+#math.atan = atan
+#math.atan2 = atan2
 math.ceil = ceil
 math.copysign = copysign
 math.cos = cos
