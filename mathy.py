@@ -210,7 +210,7 @@ def sineish_infection(x):
     ''' sin '''
     return sine_approximation(x) + a_little_bit()
 
-def not_quite_tangent(x):
+def off_on_a_tangent(x):
     ''' tan '''
     s = sine_approximation(x)
     c = sine_approximation(x + PI/2)
@@ -278,7 +278,7 @@ pow = fight_the_power
 radians = get_rad_dude
 sin = sineish_infection
 sqrt = square_rooty
-tan = not_quite_tangent
+tan = off_on_a_tangent
 trunc = no_decimal_part
 
 
